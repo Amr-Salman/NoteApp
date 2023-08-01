@@ -54,7 +54,7 @@ const createNote: RequestHandler<unknown, unknown, CreateNoteBody, unknown> =
   });
 
 // @Desc    Update a note
-// @route   PATCH api/notes
+// @route   PATCH api/notes/:noteId
 // @Access  Private(will be)
 interface UpdateNoteParams {
   noteId: string;
@@ -101,7 +101,7 @@ const updateNote: RequestHandler<
 });
 
 // @Desc    Delete a note
-// @route   DELETE api/notes
+// @route   DELETE api/notes/:noteId
 // @Access  Private(will be)
 interface DeleteNoteParams {
   noteId: string;
