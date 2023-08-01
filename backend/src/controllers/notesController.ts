@@ -4,11 +4,17 @@ import noteModel from '../models/noteModel';
 import createHttpError from 'http-errors';
 import mongoose from 'mongoose';
 
+// @Desc    Get all the notes
+// @route   GET api/notes
+// @Access  Private(will be)
 const getAllNotes: RequestHandler = asyncHandler(async (req, res) => {
   const notes = await noteModel.find().exec();
   res.status(200).json(notes);
 });
 
+// @Desc    Get a note
+// @route   GET api/notes
+// @Access  Private(will be)
 const getNote: RequestHandler = asyncHandler(async (req, res) => {
   const { noteId } = req.params;
 
@@ -26,6 +32,9 @@ const getNote: RequestHandler = asyncHandler(async (req, res) => {
   res.status(200).json(note);
 });
 
+// @Desc    Create a note
+// @route   POST api/notes
+// @Access  Private(will be)
 interface CreateNoteBody {
   title?: string;
   text?: string;
@@ -44,6 +53,9 @@ const createNote: RequestHandler<unknown, unknown, CreateNoteBody, unknown> =
     res.status(201).json(newNote);
   });
 
+// @Desc    Update a note
+// @route   PATCH api/notes
+// @Access  Private(will be)
 interface UpdateNoteParams {
   noteId: string;
 }
@@ -88,8 +100,9 @@ const updateNote: RequestHandler<
   res.status(200).json(updatedNote);
 });
 
-// @Route   api/notes/:noteId
-// @Access  Private
+// @Desc    Delete a note
+// @route   DELETE api/notes
+// @Access  Private(will be)
 interface DeleteNoteParams {
   noteId: string;
 }
